@@ -1,0 +1,21 @@
+LightName:
+    type: string
+    enum:
+      - bedroom
+      - guestroom
+      - sittingroom
+      - kitchen
+      - cinema
+LightStatusDTO:
+  type: object
+  required:
+    - name
+  properties:
+    name:
+      type: string
+    address:
+      type: string
+    age:
+      type: integer
+      format: int32
+      minimum: 0

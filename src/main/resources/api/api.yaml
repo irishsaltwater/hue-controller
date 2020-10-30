@@ -1,0 +1,31 @@
+openapi: 3.0.0
+info:
+  title: Hue Controller API
+  description: Server to translate human-friendly Hue Light requests to the format required by Hue
+  version: 2.0
+
+paths:
+  /light/{LightName}:
+    post:
+      operationId: setLight
+      tags:
+        - light
+      summary: Sets the values on the light specified in the path
+      parameters:
+        - name: LightName
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            $ref: "objects.yaml#/LightName"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "objects.yaml#/LightStatusDTO"
+      responses:
+        '200':
+          description: OK
+
+
