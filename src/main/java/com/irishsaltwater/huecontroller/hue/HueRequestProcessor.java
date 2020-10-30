@@ -11,20 +11,27 @@ public class HueRequestProcessor {
 
     Logger LOGGER = LoggerFactory.getLogger(this.getClass().getName());
 
-    public void processCustomRequest(LightName lightName, LightStatusDTO lightStatusDTO){
+    public LightStatusDTO processCustomRequest(LightName lightName, LightStatusDTO lightStatusDTO){
         //convert light status using RGB conversions
-        //populate DTO
+        //populate Hue DTO
+        //call function to send
+
+        //todo implement error case and populate dto
+        return null;
     }
 
-    public void turnOnLight(LightName lightName){
-        //use DTO factory to get preexisting payload to send
+    public LightStatusDTO turnOnLight(LightName lightName){
+        //use DTO factory to get preexisting payload to send.
+        return null;
     }
 
-    public void turnOffLight(LightName lightName){
+    public LightStatusDTO turnOffLight(LightName lightName){
         //use DTO factory to get preexisting payload to send
+        return null;
     }
 
     public LightStatusDTO getLightStatus(LightName lightName){
-
+        return null;
     }
 }
+

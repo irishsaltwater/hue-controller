@@ -13,6 +13,20 @@ class LightApiDelegateImplTest extends BaseIntegrationTest {
     void postToLight_Kitchen(){
         LightStatusDTO lightStatusDTO = new LightStatusDTO();
         lightStatusDTO.setBlue(1);
+        lightStatusDTO.setRed(1);
+        lightStatusDTO.setGreen(1);
+        ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:" + port + "/v1/light/KITCHEN",
+                lightStatusDTO, String.class);
+        assertEquals(HttpStatus.NOT_IMPLEMENTED, response.getStatusCode());
+    }
+
+    @Test //todo No validation?
+    void postToLight_Kitchen_IncorrectValues(){
+        LightStatusDTO lightStatusDTO = new LightStatusDTO();
+        lightStatusDTO.setBlue(-1);
+        lightStatusDTO.setRed(-1);
+        lightStatusDTO.setGreen(-1);
+        lightStatusDTO.setBrightness(-1);
         ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:" + port + "/v1/light/KITCHEN",
                 lightStatusDTO, String.class);
         assertEquals(HttpStatus.NOT_IMPLEMENTED, response.getStatusCode());
