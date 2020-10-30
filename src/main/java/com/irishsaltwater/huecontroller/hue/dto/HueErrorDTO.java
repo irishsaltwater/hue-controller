@@ -1,4 +1,4 @@
-package com.irishsaltwater.huecontroller.hue;
+package com.irishsaltwater.huecontroller.hue.dto;
 
 public class HueErrorDTO {
 

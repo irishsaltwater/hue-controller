@@ -17,8 +17,8 @@ public class HueRequestProcessor {
         //call function to send
         assertLightNameisValid(lightName);
         assertDTOIsValid(lightStatusDTO);
-        
 
+        
 
         //todo implement error case and populate dto
         return null;
