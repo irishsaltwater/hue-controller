@@ -1,31 +1,63 @@
-LightName:
-    type: string
-    enum:
-      - bedroom
-      - guestroom
-      - sittingroom
-      - kitchen
-      - cinema
-LightStatusDTO:
-  type: object
-  required:
-    - red
-    - green
-    - blue
-  properties:
-    red:
-      type: Integer
-      format: int32
-      minimum: 0
-    green:
-      type: Integer
-      format: int32
-      minimum: 0
-    blue:
-      type: Integer
-      format: int32
-      minimum: 0
-    brightness:
-      type: Integer
-      format: int32
-      minimum: 1
+components:
+  schemas:
+    LightName:
+        type: string
+        enum:
+          - bedroom
+          - guestroom
+          - sittingroom
+          - kitchen
+          - cinema
+    LightStatusDTO:
+      type: object
+      required:
+        - red
+        - green
+        - blue
+      properties:
+        red:
+          type: Integer
+          format: int32
+          minimum: 0
+        green:
+          type: Integer
+          format: int32
+          minimum: 0
+        blue:
+          type: Integer
+          format: int32
+          minimum: 0
+        brightness:
+          type: Integer
+          format: int32
+          minimum: 1
+        error:
+          type: object
+          $ref: "#/components/schemas/HueError"
+    HueDTO:
+      type: object
+      properties:
+        on:
+          type: boolean
+        bri:
+          type: Integer
+          format: int32
+        hue:
+          type: Integer
+          format: int32
+        sat:
+          type: Integer
+          format: int32
+        error:
+          type: object
+          $ref: "#/components/schemas/HueError"
+    HueError:
+      type: object
+      properties:
+        type:
+          type: string
+        address:
+          type: string
+        description:
+          type: string
+

@@ -19,13 +19,13 @@ paths:
           required: true
           description: The name of the light to set
           schema:
-            $ref: "objects.yaml#/LightName"
+            $ref: "objects.yaml#/components/schemas/LightName"
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "objects.yaml#/LightStatusDTO"
+              $ref: "objects.yaml#/components/schemas/LightStatusDTO"
       responses:
         '200':
           description: OK
@@ -40,14 +40,14 @@ paths:
           required: true
           description: The name of the light to get
           schema:
-            $ref: "objects.yaml#/LightName"
+            $ref: "objects.yaml#/components/schemas/LightName"
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "objects.yaml#/LightStatusDTO"
+                $ref: "objects.yaml#/components/schemas/LightStatusDTO"
   /light/{LightName}/on:
     put:
       operationId: turnOnLight
@@ -60,7 +60,7 @@ paths:
           required: true
           description: The name of the light to turn on
           schema:
-            $ref: "objects.yaml#/LightName"
+            $ref: "objects.yaml#/components/schemas/LightName"
       responses:
         '200':
           description: OK
@@ -76,7 +76,26 @@ paths:
           required: true
           description: The name of the light to turn off
           schema:
-            $ref: "objects.yaml#/LightName"
+            $ref: "objects.yaml#/components/schemas/LightName"
       responses:
         '200':
           description: OK
+  /debug/generateHueDTO:
+    post:
+      operationId: generateHueDTO
+      tags:
+        - light
+      summary: Converts the request object into the HueDTO sent to the Hue hub, for debug purposes.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "objects.yaml#/components/schemas/LightStatusDTO"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "objects.yaml#/components/schemas/HueDTO"
