@@ -12,6 +12,7 @@ class HueDTOBuilderTest {
         HueDTO hueDTO =  HueDTOBuilder.build(generateLightStatusDTO_FullBrightness());
     }
 
+    //These values are defaults, need to do them for non-default, like purple etc
     //todo builders for expected values, pull from node file
     private LightStatusDTO generateLightStatusDTO_FullBrightness() {
         LightStatusDTO lightStatusDTO = new LightStatusDTO();
@@ -20,6 +21,15 @@ class HueDTOBuilderTest {
         lightStatusDTO.setBlue(255);
         lightStatusDTO.setGreen(255);
         return lightStatusDTO;
+    }
+
+    private HueDTO generateHueDTO_FullBrightness() {
+        HueDTO hueDTO = new HueDTO();
+        hueDTO.setOn(true);
+        hueDTO.setBri(254);
+        hueDTO.setHue(8402);
+        hueDTO.setSat(140);
+        return hueDTO;
     }
 
     private LightStatusDTO generateLightStatusDTO_MiddleBrightness() {
