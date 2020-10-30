@@ -20,6 +20,5 @@ public class LightApiDelegateImpl implements LightApiDelegate {
     public ResponseEntity<Void> setLight(LightName lightName,
                                          LightStatusDTO body) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
     }
 }

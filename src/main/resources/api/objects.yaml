@@ -9,13 +9,23 @@ LightName:
 LightStatusDTO:
   type: object
   required:
-    - name
+    - red
+    - green
+    - blue
   properties:
-    name:
-      type: string
-    address:
-      type: string
-    age:
-      type: integer
+    red:
+      type: Integer
       format: int32
       minimum: 0
+    green:
+      type: Integer
+      format: int32
+      minimum: 0
+    blue:
+      type: Integer
+      format: int32
+      minimum: 0
+    brightness:
+      type: Integer
+      format: int32
+      minimum: 1
