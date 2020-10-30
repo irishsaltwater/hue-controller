@@ -39,5 +39,5 @@ class LightApiDelegateImplTest extends BaseIntegrationTest {
         LightStatusDTO lightStatusDTO = new LightStatusDTO();
         restTemplate.put("http://localhost:" + port + "/v1/light/KITCHEN/on", null);
     }
-    
+
 }

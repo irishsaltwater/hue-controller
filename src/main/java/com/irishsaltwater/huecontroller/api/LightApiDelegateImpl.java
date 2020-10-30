@@ -1,7 +1,11 @@
 package com.irishsaltwater.huecontroller.api;
 
+import com.irishsaltwater.huecontroller.hue.HueRequestProcessor;
 import com.irishsaltwater.huecontroller.model.LightName;
 import com.irishsaltwater.huecontroller.model.LightStatusDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +13,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LightApiDelegateImpl implements LightApiDelegate {
+
+    Logger LOGGER = LoggerFactory.getLogger(this.getClass().getName());
+
+    final HueRequestProcessor hueRequestProcessor;
+
+    public LightApiDelegateImpl(HueRequestProcessor hueRequestProcessor) {
+        this.hueRequestProcessor = hueRequestProcessor;
+    }
 
     /**
      * POST /light/{lightName} : Sets the values on the light specified in the path
@@ -20,7 +32,9 @@ public class LightApiDelegateImpl implements LightApiDelegate {
      */
     public ResponseEntity<Void> setLight(LightName lightName,
                                          LightStatusDTO body) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        LOGGER.info("Request received to set light {} to custom setting", lightName.getValue());
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
