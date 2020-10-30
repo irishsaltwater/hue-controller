@@ -3,6 +3,8 @@ info:
   title: Hue Controller API
   description: Server to translate human-friendly Hue Light requests to the format required by Hue
   version: 2.0
+servers:
+  - url: /v1
 
 paths:
   /light/{LightName}:
@@ -15,7 +17,7 @@ paths:
         - name: LightName
           in: path
           required: true
-          description: Parameter description in CommonMark or HTML.
+          description: The name of the light to set
           schema:
             $ref: "objects.yaml#/LightName"
       requestBody:
@@ -24,6 +26,57 @@ paths:
           application/json:
             schema:
               $ref: "objects.yaml#/LightStatusDTO"
+      responses:
+        '200':
+          description: OK
+    get:
+      operationId: getLight
+      tags:
+        - light
+      summary: Gets the values of the light specified in the path
+      parameters:
+        - name: LightName
+          in: path
+          required: true
+          description: The name of the light to get
+          schema:
+            $ref: "objects.yaml#/LightName"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "objects.yaml#/LightStatusDTO"
+  /light/{LightName}/on:
+    put:
+      operationId: turnOnLight
+      tags:
+        - light
+      summary: Turns on the light to default brightness and colour
+      parameters:
+        - name: LightName
+          in: path
+          required: true
+          description: The name of the light to turn on
+          schema:
+            $ref: "objects.yaml#/LightName"
+      responses:
+        '200':
+          description: OK
+  /light/{LightName}/off:
+    put:
+      operationId: turnOffLight
+      tags:
+        - light
+      summary: Turns off the light
+      parameters:
+        - name: LightName
+          in: path
+          required: true
+          description: The name of the light to turn off
+          schema:
+            $ref: "objects.yaml#/LightName"
       responses:
         '200':
           description: OK
