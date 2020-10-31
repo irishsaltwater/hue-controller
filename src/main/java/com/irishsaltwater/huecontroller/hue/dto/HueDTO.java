@@ -1,11 +1,15 @@
 package com.irishsaltwater.huecontroller.hue.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HueDTO {
 
     private boolean on;
     private Integer bri;
     private Integer hue;
     private Integer sat;
+    private List<Double> xy;
 
     public boolean isOn() {
         return on;
@@ -37,5 +41,17 @@ public class HueDTO {
 
     public void setSat(Integer sat) {
         this.sat = sat;
+    }
+
+    public List<Double> getXy() {
+        if(xy == null){
+            xy = new ArrayList<Double>();
+            return xy;
+        }
+        return xy;
+    }
+
+    public void setXy(List<Double> xy) {
+        this.xy = xy;
     }
 }

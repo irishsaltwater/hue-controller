@@ -14,18 +14,18 @@ LightStatusDTO:
     - blue
   properties:
     red:
-      type: Integer
+      type: integer
       format: int32
       minimum: 0
     green:
-      type: Integer
+      type: integer
       format: int32
       minimum: 0
     blue:
-      type: Integer
+      type: integer
       format: int32
       minimum: 0
     brightness:
-      type: Integer
+      type: integer
       format: int32
       minimum: 1
