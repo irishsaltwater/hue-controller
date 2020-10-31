@@ -54,3 +54,7 @@ compileJava {
 test {
 	useJUnitPlatform()
 }
+
+springBoot {
+	mainClassName = "com.irishsaltwater.huecontroller.HuecontrollerApplication"
+}
