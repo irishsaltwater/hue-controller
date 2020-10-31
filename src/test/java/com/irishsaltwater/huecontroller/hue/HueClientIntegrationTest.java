@@ -33,7 +33,7 @@ class HueClientIntegrationTest {
     @Test
     void buildFullURL_Kitchen(){
         String url = hueClient.buildFullURL(LightName.KITCHEN);
-        String expectedURL = "http://" + hueAddress + "/api/" + hueApiKey + "/4/state";
+        String expectedURL = "http://" + hueAddress + "/api/" + hueApiKey + "/lights/4/state";
         assertEquals(expectedURL, url);
     }
 

@@ -86,7 +86,7 @@ public class HueClient {
      * @returns a String in the format 127.0.0.1/api/<key>/</key>
      */
     private UriComponentsBuilder buildBaseURL(){
-        String pathToLight = "/api/" + hueApiKey + "/{light-number}/state";
+        String pathToLight = "/api/" + hueApiKey + "/lights/{light-number}/state";
         return UriComponentsBuilder.newInstance().scheme(Scheme.HTTP.toValue()).host(hueAddress).path(pathToLight);
     }
 
