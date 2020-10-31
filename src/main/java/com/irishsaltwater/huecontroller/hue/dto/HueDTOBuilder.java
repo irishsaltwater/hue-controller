@@ -18,8 +18,6 @@ public class HueDTOBuilder {
     private HueDTOBuilder() {
     }
 
-    ;
-
     public static HueDTO build(LightStatusDTO lightStatusDTO) {
         LOGGER.info("Building HueDTO for LightStatusDTO");
         HueDTO hueDTO = new HueDTO();
@@ -47,6 +45,7 @@ public class HueDTOBuilder {
                 break;
             case OFF:
                 hueDTO = buildDefaultDTOforOff();
+                break;
             case DIMMED:
                 hueDTO = buildDefaultDTOforDimmed();
         }
@@ -55,16 +54,27 @@ public class HueDTOBuilder {
 
     private static HueDTO buildDefaultDTOforDimmed() {
         HueDTO hueDTO = new HueDTO();
-        return null;
+        //todo no xy needed?
+        hueDTO.setOn(true);
+        hueDTO.setBri(DIM_BRI);
+        hueDTO.setHue(DIM_HUE);
+        hueDTO.setSat(DIM_SAT);
+        return hueDTO;
     }
 
     private static HueDTO buildDefaultDTOforOff() {
-
-        return null;
+        HueDTO hueDTO = new HueDTO();
+        hueDTO.setOn(false);
+        return hueDTO;
     }
 
     private static HueDTO buildDefaultDTOforOn() {
-        return null;
+        HueDTO hueDTO = new HueDTO();
+        hueDTO.setOn(true);
+        hueDTO.setBri(ON_BRI);
+        hueDTO.setHue(ON_HUE);
+        hueDTO.setSat(ON_SAT);
+        return hueDTO;
     }
 
 }

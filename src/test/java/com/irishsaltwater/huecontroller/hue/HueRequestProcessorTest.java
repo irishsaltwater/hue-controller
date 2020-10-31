@@ -3,12 +3,14 @@ package com.irishsaltwater.huecontroller.hue;
 import com.irishsaltwater.huecontroller.model.LightName;
 import com.irishsaltwater.huecontroller.model.LightStatusDTO;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class HueRequestProcessorTest {
 
-    private HueRequestProcessor processor = new HueRequestProcessor();
+    private HueRequestProcessor processor = new HueRequestProcessor(Mockito.mock(HueClient.class));
 
     @Test
     void processCustomRequest(){

@@ -44,10 +44,6 @@ public class HueDTO {
     }
 
     public List<Double> getXy() {
-        if(xy == null){
-            xy = new ArrayList<Double>();
-            return xy;
-        }
         return xy;
     }
 
