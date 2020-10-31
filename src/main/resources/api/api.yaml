@@ -80,3 +80,19 @@ paths:
       responses:
         '200':
           description: OK
+  /light/{LightName}/dim:
+    put:
+      operationId: dimLight
+      tags:
+        - light
+      summary: Dims the light
+      parameters:
+        - name: LightName
+          in: path
+          required: true
+          description: The name of the light to dim
+          schema:
+            $ref: "objects.yaml#/LightName"
+      responses:
+        '200':
+          description: OK

@@ -81,4 +81,16 @@ public class LightApiDelegateImpl implements LightApiDelegate {
         hueRequestProcessor.turnOnLight(lightName);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    /**
+     * PUT /light/{LightName}/dim : Dims the light
+     *
+     * @param lightName The name of the light to dim (required)
+     * @return OK (status code 200)
+     * @see LightApi#dimLight
+     */
+    public ResponseEntity<Void> dimLight(LightName lightName) {
+        hueRequestProcessor.dimLight(lightName);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
