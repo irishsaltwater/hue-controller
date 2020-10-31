@@ -33,7 +33,7 @@ public class LightApiDelegateImpl implements LightApiDelegate {
     public ResponseEntity<Void> setLight(LightName lightName,
                                          LightStatusDTO body) {
         LOGGER.info("Request received to set light {} to custom setting", lightName.getValue());
-
+        hueRequestProcessor.processCustomRequest(lightName, body);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
