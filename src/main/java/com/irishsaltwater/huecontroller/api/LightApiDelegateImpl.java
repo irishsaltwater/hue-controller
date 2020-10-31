@@ -66,8 +66,8 @@ public class LightApiDelegateImpl implements LightApiDelegate {
      * @see LightApi#turnOffLight
      */
     public ResponseEntity<Void> turnOffLight(LightName lightName) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
+        hueRequestProcessor.turnOffLight(lightName);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -78,7 +78,7 @@ public class LightApiDelegateImpl implements LightApiDelegate {
      * @see LightApi#turnOnLight
      */
     public ResponseEntity<Void> turnOnLight(LightName lightName) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
+        hueRequestProcessor.turnOnLight(lightName);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

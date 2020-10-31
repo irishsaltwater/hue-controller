@@ -4,6 +4,7 @@ import com.irishsaltwater.huecontroller.hue.dto.HueDTO;
 import com.irishsaltwater.huecontroller.hue.dto.HueDTOBuilder;
 import com.irishsaltwater.huecontroller.model.LightName;
 import com.irishsaltwater.huecontroller.model.LightStatusDTO;
+import org.apache.commons.lang3.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -40,20 +41,25 @@ public class HueRequestProcessor {
     }
 
     public LightStatusDTO turnOnLight(LightName lightName){
-        //use DTO factory to get preexisting payload to send.
         assertLightNameisValid(lightName);
+        hueClient.sendRequest(lightName, HueDTOBuilder.build(DefinedHueSetting.ON));
         return null;
     }
 
     public LightStatusDTO turnOffLight(LightName lightName){
-        //use DTO factory to get preexisting payload to send
         assertLightNameisValid(lightName);
+        hueClient.sendRequest(lightName, HueDTOBuilder.build(DefinedHueSetting.OFF));
+        return null;
+    }
+
+    public LightStatusDTO dimLight(LightName lightName){
+        assertLightNameisValid(lightName);
+        hueClient.sendRequest(lightName, HueDTOBuilder.build(DefinedHueSetting.DIMMED));
         return null;
     }
 
     public LightStatusDTO getLightStatus(LightName lightName){
-        assertLightNameisValid(lightName);
-        return null;
+        throw new NotImplementedException("Get light status is not implemented");
     }
 
     private void assertDTOIsValid(LightStatusDTO lightStatusDTO){

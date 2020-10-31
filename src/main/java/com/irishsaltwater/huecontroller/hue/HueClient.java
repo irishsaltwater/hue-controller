@@ -39,7 +39,7 @@ public class HueClient {
     private String cinemaNumber;
 
 
-    public void sendRequest(LightName lightName, HueDTO hueDTO){
+    public HueDTO sendRequest(LightName lightName, HueDTO hueDTO){
         LOGGER.info("Sending request to light {}", lightName);
 
         //build URL
@@ -53,7 +53,8 @@ public class HueClient {
         RestTemplate restTemplate = new RestTemplate();
         //todo Method to read response
         restTemplate.put(url, payload);
-        //return response
+        //return response?
+        return hueDTO;
     }
 
     protected String buildJsonStringFromDTO(HueDTO hueDTO) {
