@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.irishsaltwater.huecontroller.hue.dto.HueDTO;
-import com.irishsaltwater.huecontroller.hue.dto.HueDTOBuilder;
 import com.irishsaltwater.huecontroller.model.LightName;
+import com.irishsaltwater.huecontroller.model.PlugName;
 import io.swagger.models.Scheme;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,12 +38,38 @@ public class HueClient {
     @Value("${hue.light.cinema}")
     private String cinemaNumber;
 
+    // Plugs
+    @Value("${hue.plug.tree}")
+    private String treePlug;
 
-    public HueDTO sendRequest(LightName lightName, HueDTO hueDTO){
+    @Value("${hue.plug.balcony}")
+    private String balconyPlug;
+
+
+    public HueDTO sendRequest(LightName lightName, HueDTO hueDTO) {
         LOGGER.info("Sending request to light {}", lightName);
 
         //build URL
         String url = buildFullURL(lightName);
+        LOGGER.debug("Request being sent to URL: {}", url);
+
+        //build JSON payload
+        String payload = buildJsonStringFromDTO(hueDTO);
+
+        //send
+        RestTemplate restTemplate = new RestTemplate();
+        //todo Method to read response
+        restTemplate.put(url, payload);
+        //return response?
+        return hueDTO;
+    }
+
+    //Send request for plug
+    public HueDTO sendRequest(PlugName plugName, HueDTO hueDTO) {
+        LOGGER.info("Sending request to plug {}", plugName);
+
+        //build URL
+        String url = buildFullURL(plugName);
         LOGGER.debug("Request being sent to URL: {}", url);
 
         //build JSON payload
@@ -74,25 +100,32 @@ public class HueClient {
         return json;
     }
 
-    protected String buildFullURL(LightName lightName){
+    protected String buildFullURL(LightName lightName) {
         UriComponentsBuilder uriComponentsBuilder = buildBaseURL();
         UriComponents uriComponents = uriComponentsBuilder.buildAndExpand(mapLightToNumber(lightName));
 
         return uriComponents.toString();
     }
 
+    protected String buildFullURL(PlugName plugName) {
+        UriComponentsBuilder uriComponentsBuilder = buildBaseURL();
+        UriComponents uriComponents = uriComponentsBuilder.buildAndExpand(mapPlugToNumber(plugName));
+
+        return uriComponents.toString();
+    }
+
     /**
      * Builds the full base URL pointing to the Hue Bridge, including API key
+     *
      * @returns a String in the format 127.0.0.1/api/<key>/</key>
      */
-    private UriComponentsBuilder buildBaseURL(){
+    private UriComponentsBuilder buildBaseURL() {
         String pathToLight = "/api/" + hueApiKey + "/lights/{light-number}/state";
         return UriComponentsBuilder.newInstance().scheme(Scheme.HTTP.toValue()).host(hueAddress).path(pathToLight);
     }
 
-
-    private String mapLightToNumber(LightName lightName){
-        switch (lightName){
+    private String mapLightToNumber(LightName lightName) {
+        switch (lightName) {
             case CINEMA:
                 return cinemaNumber;
             case BEDROOM:
@@ -103,6 +136,16 @@ public class HueClient {
                 return "1"; //todo: Implement
             case SITTINGROOM:
                 return sittingroomNumber;
+        }
+        return "";
+    }
+
+    private String mapPlugToNumber(PlugName plugName) {
+        switch (plugName) {
+            case TREE:
+                return treePlug;
+            case BALCONY:
+                return balconyPlug;
         }
         return "";
     }

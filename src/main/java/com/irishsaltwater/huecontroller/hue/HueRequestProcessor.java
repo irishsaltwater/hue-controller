@@ -4,6 +4,7 @@ import com.irishsaltwater.huecontroller.hue.dto.HueDTO;
 import com.irishsaltwater.huecontroller.hue.dto.HueDTOBuilder;
 import com.irishsaltwater.huecontroller.model.LightName;
 import com.irishsaltwater.huecontroller.model.LightStatusDTO;
+import com.irishsaltwater.huecontroller.model.PlugName;
 import org.apache.commons.lang3.NotImplementedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,6 +40,17 @@ public class HueRequestProcessor {
             throw new IllegalArgumentException("Light Name is null.");
         }
     }
+
+    public LightStatusDTO turnOnPlug(PlugName plugName){
+        hueClient.sendRequest(plugName, HueDTOBuilder.build(DefinedHueSetting.PLUG_ON));
+        return null;
+    }
+
+    public LightStatusDTO turnOffPlug(PlugName plugName){
+        hueClient.sendRequest(plugName, HueDTOBuilder.build(DefinedHueSetting.PLUG_OFF));
+        return null;
+    }
+
 
     public LightStatusDTO turnOnLight(LightName lightName){
         assertLightNameisValid(lightName);

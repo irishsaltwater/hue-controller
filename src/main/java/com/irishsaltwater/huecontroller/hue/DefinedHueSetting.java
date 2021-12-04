@@ -4,5 +4,7 @@ public enum DefinedHueSetting {
 
     ON,
     OFF,
-    DIMMED
+    DIMMED,
+    PLUG_ON,
+    PLUG_OFF
 }

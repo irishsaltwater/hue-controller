@@ -6,6 +6,11 @@ LightName:
       - sittingroom
       - kitchen
       - cinema
+PlugName:
+  type: string
+  enum:
+    - balcony
+    - tree
 LightStatusDTO:
   type: object
   required:

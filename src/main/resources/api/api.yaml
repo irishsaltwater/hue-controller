@@ -96,3 +96,35 @@ paths:
       responses:
         '200':
           description: OK
+  /plug/{PlugName}/on:
+    get:
+      operationId: plugOn
+      tags:
+        - plug
+      summary: Turns on the plug
+      parameters:
+        - name: PlugName
+          in: path
+          required: true
+          description: The name of the plug to turn on
+          schema:
+            $ref: "objects.yaml#/PlugName"
+      responses:
+        '200':
+          description: OK
+  /plug/{PlugName}/off:
+    get:
+      operationId: plugOff
+      tags:
+        - plug
+      summary: Turns off the plug
+      parameters:
+        - name: PlugName
+          in: path
+          required: true
+          description: The name of the plug to turn off
+          schema:
+            $ref: "objects.yaml#/PlugName"
+      responses:
+        '200':
+          description: OK

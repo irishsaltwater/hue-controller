@@ -48,6 +48,13 @@ public class HueDTOBuilder {
                 break;
             case DIMMED:
                 hueDTO = buildDefaultDTOforDimmed();
+                break;
+            case PLUG_ON:
+                hueDTO = buildDefaultDTOforPlugOn();
+                break;
+            case PLUG_OFF:
+                hueDTO = buildDefaultDTOforPlugOff();
+                break;
         }
         return hueDTO;
     }
@@ -76,5 +83,19 @@ public class HueDTOBuilder {
         hueDTO.setSat(ON_SAT);
         return hueDTO;
     }
+
+    // Plug logic
+    private static HueDTO buildDefaultDTOforPlugOn() {
+        HueDTO hueDTO = new HueDTO();
+        hueDTO.setOn(true);
+        return hueDTO;
+    }
+
+    private static HueDTO buildDefaultDTOforPlugOff() {
+        HueDTO hueDTO = new HueDTO();
+        hueDTO.setOn(false);
+        return hueDTO;
+    }
+
 
 }
